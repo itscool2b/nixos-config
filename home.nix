@@ -18,9 +18,13 @@
 
 
   #ricing
-  
-
-
+  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;  
+  imports = [
+  inputs.nix-colors.homeManagerModules.default
+    ./features/mako.nix
+    ./features/alacritty.nix
+    
+];
 
  #declaring firefox
 

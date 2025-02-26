@@ -25,7 +25,6 @@
   # Ricing  
   stylix = {
     enable = true;
-    image = "/etc/nixos/wallpaper.png";    
     autoEnable = true;
     override = {
       base00 = "0a506e";
@@ -46,6 +45,10 @@
       base0F = "66a1b8";
     };
   }; 
+stylix.image = builtins.path {
+  path = ./wallpaper.png;
+  name = "wallpaper.png";
+};
   
     
   # Configure network proxy if necessary

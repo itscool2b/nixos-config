@@ -22,12 +22,32 @@
  nix.settings.experimental-features = ["nix-command" "flakes"];
 
 
-  # Ricing
+  # Ricing  
+  stylix = {
+    enable = true;
+    image = "/etc/nixos/wallpaper.png";    
+    autoEnable = true;
+    override = {
+      base00 = "0a506e";
+      base01 = "585f62";
+      base02 = "653b27";
+      base03 = "cc8f62";
+      base04 = "66a1b8";
+      base05 = "e5dccb";
+      base06 = "58c5cd";
+      base07 = "548851";
+      base08 = "e35b22";
+      base09 = "d19742";
+      base0A = "cc8f62";
+      base0B = "84dcd4";
+      base0C = "58c5cd";
+      base0D = "66a1b8";
+      base0E = "653b27";
+      base0F = "66a1b8";
+    };
+  }; 
   
-
- 
-
-  
+    
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";

@@ -11,6 +11,7 @@
      };
   
      nix-colors.url = "github:misterio77/nix-colors";
+     
   
   };
   
@@ -28,8 +29,7 @@
          home-manager.users.itscool2b = import ./home.nix;
          
 }
-         inputs.stylix.nixosModules.stylix
-
+    inputs.stylix.nixosModules.stylix    
 
       ];
     };

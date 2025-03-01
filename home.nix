@@ -1,11 +1,11 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "itscool2b";
   home.homeDirectory = "/home/itscool2b";
-
+   
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -18,14 +18,7 @@
 
 
   #ricing
-  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;  
-  imports = [
-  inputs.nix-colors.homeManagerModules.default
-    ./features/mako.nix
-    ./features/alacritty.nix
-    
-];
-
+   
  #declaring firefox
 
   # The home.packages option allows you to install Nix packages into your
@@ -33,8 +26,13 @@
   home.packages = with pkgs; [
     discord
     spotify
+    htop
     vscodium
     neofetch
+    xfce.xfce4-docklike-plugin
+    youtube-music
+    kitty
+    librewolf-bin
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

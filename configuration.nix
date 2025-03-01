@@ -23,33 +23,38 @@
 
 
   # Ricing  
-  stylix = {
-    enable = true;
-    autoEnable = true;
-    override = {
-      base00 = "0a506e";
-      base01 = "585f62";
-      base02 = "653b27";
-      base03 = "cc8f62";
-      base04 = "66a1b8";
-      base05 = "e5dccb";
-      base06 = "58c5cd";
-      base07 = "548851";
-      base08 = "e35b22";
-      base09 = "d19742";
-      base0A = "cc8f62";
-      base0B = "84dcd4";
-      base0C = "58c5cd";
-      base0D = "66a1b8";
-      base0E = "653b27";
-      base0F = "66a1b8";
-    };
-  }; 
-stylix.image = builtins.path {
-  path = ./wallpaper.png;
-  name = "wallpaper.png";
+    stylix = {
+      enable = true;
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+      autoEnable = true;
+      polarity = "dark";
+
+      fonts = {
+        serif = config.stylix.fonts.monospace;
+        sansSerif = config.stylix.fonts.monospace;
+        emoji = {
+          package = pkgs.noto-fonts-emoji;
+          name = "Noto Color Emoji";
+        };
+        monospace = {
+          package = pkgs.nerd-fonts.jetbrains-mono;
+          name = "JetBrainsMono NFM";
+        };
+
+        sizes = {
+          terminal = 14;
+          popups = 14;
+        };
+      };
 };
-  
+  #all of the below is from @xsharawi
+  stylix.cursor.name = "BreezeX-RosePine-Linux";
+  # forceing because stylix is dumb
+stylix.image = builtins.path {
+ path = ./wallpaper.png;
+ name = "wallpaper.png";
+
+};  
     
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -143,9 +148,8 @@ users = {
 "itscool2b" = import ./home.nix;
 };
 };  
-  # Install firefox.
-  programs.firefox.enable = true;
-
+  #un Install firefox.
+  
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -157,6 +161,14 @@ users = {
    git
    mangohud
   ];
+
+
+  fileSystems."/run/media/itscool2b/New bro" = {
+  device = "/dev/disk/by-uuid/a9d10310-111d-4cd6-8f37-d423440f9cd9";
+  fsType = "ext4";
+  options = [ "defaults" ];
+};
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

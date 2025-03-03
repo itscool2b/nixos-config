@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ lib, config, pkgs, inputs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -16,8 +16,17 @@
 
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
-
+ #window managment
+  
+     #hyprland
+ 
+ 
   #ricing
+  services.picom = {
+  enable = true;
+  backend = "glx";   
+  vSync = true;
+};
    
  #declaring firefox
 
@@ -33,7 +42,18 @@
     youtube-music
     kitty
     librewolf-bin
-  ];
+picom
+      ];
+ 
+  programs.kitty = {
+  enable = true;
+  settings = {
+  background_opacity = lib.mkForce "0.01";
+};
+
+};
+
+#tiling
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

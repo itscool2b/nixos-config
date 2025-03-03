@@ -21,39 +21,61 @@
 
  nix.settings.experimental-features = ["nix-command" "flakes"];
 
-
+ #hyprland
+  
+  
   # Ricing  
     stylix = {
-      enable = true;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-      autoEnable = true;
-      polarity = "dark";
+  enable = true;
+  autoEnable = true;
+  polarity = "dark";
+  
+ # Base16 Scheme (Fixed Syntax)
+  base16Scheme = {
+    base00 = "#151515";
+  base01 = "#202020";
+  base02 = "#303030";
+  base03 = "#505050";
+  base04 = "#b0b0b0";
+  base05 = "#d0d0d0";
+  base06 = "#e0e0e0";
+  base07 = "#f5f5f5";
+  base08 = "#fb9fb1";
+  base09 = "#eda987";
+  base0A = "#ddb26f";
+  base0B = "#acc267";
+  base0C = "#12cfc0";
+  base0D = "#6fc2ef";
+  base0E = "#e1a3ee";
+  base0F = "#deaf8f";
 
-      fonts = {
-        serif = config.stylix.fonts.monospace;
-        sansSerif = config.stylix.fonts.monospace;
-        emoji = {
-          package = pkgs.noto-fonts-emoji;
-          name = "Noto Color Emoji";
-        };
-        monospace = {
-          package = pkgs.nerd-fonts.jetbrains-mono;
-          name = "JetBrainsMono NFM";
-        };
+  };
 
-        sizes = {
-          terminal = 14;
-          popups = 14;
-        };
-      };
-};
-  #all of the below is from @xsharawi
-  stylix.cursor.name = "BreezeX-RosePine-Linux";
-  # forceing because stylix is dumb
-stylix.image = builtins.path {
- path = ./wallpaper.png;
- name = "wallpaper.png";
+  fonts = {
+    serif = config.stylix.fonts.monospace;
+    sansSerif = config.stylix.fonts.monospace;
+    emoji = {
+      package = pkgs.noto-fonts-emoji;
+      name = "Noto Color Emoji";
+    };
+    monospace = {
+      package = pkgs.nerd-fonts.jetbrains-mono;
+      name = "JetBrainsMono NFM";
+    };
+    
+    sizes = {
+      terminal = 12;
+      popups = 12;
+    };
+  };
 
+  cursor.name = "BreezeX-RosePine-Linux";
+
+  # Wallpaper handling (with proper builtins.path usage)
+  image = builtins.path {
+    path = ./wallpaper.png;
+    name = "wallpaper.png";
+  };
 };  
     
   # Configure network proxy if necessary
@@ -82,19 +104,30 @@ stylix.image = builtins.path {
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+ # services.xserver.enable = true;
+  services.xserver = {
+  enable = true;
 
-  # Enable the XFCE Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.xfce.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+  displayManager = {
+    lightdm.enable = true;
+    defaultSession = "xfce";
   };
 
-  # Enable CUPS to print documents.
+  desktopManager = {
+    xfce = {
+      enable = true;
+      noDesktop = true;        # Disable XFCE desktop icons and background handling
+      enableXfwm = false;      # Disable XFCE window manager
+    };
+  };
+
+  windowManager.i3.enable = true;
+};
+
+  # Enable the XFCE Desktop Environment.
+  #services.xserver.displayManager.lightdm.enable = true;
+    
+ # Enable CUPS to print documents.
   services.printing.enable = true;
   #bluetooth support
   hardware.bluetooth.enable = true;
@@ -130,8 +163,8 @@ stylix.image = builtins.path {
   };
 
 #gaming
-services.xserver.videoDrivers = ["nvidia"];
 hardware.nvidia.modesetting.enable = true;
+services.xserver.videoDrivers = ["nvidia"];
 programs.steam = {
   enable = true;
   remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play

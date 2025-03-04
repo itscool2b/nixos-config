@@ -42,13 +42,14 @@
     youtube-music
     kitty
     librewolf-bin
-picom
+    picom
+    flameshot
       ];
  
   programs.kitty = {
   enable = true;
   settings = {
-  background_opacity = lib.mkForce "0.01";
+  background_opacity = lib.mkForce "0.4";
 };
 
 };

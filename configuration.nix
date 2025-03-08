@@ -196,11 +196,7 @@ users = {
   ];
 
 
-  fileSystems."/run/media/itscool2b/New bro" = {
-  device = "/dev/disk/by-uuid/a9d10310-111d-4cd6-8f37-d423440f9cd9";
-  fsType = "ext4";
-  options = [ "defaults" ];
-};
+
 
 
   # Some programs need SUID wrappers, can be configured further or are
